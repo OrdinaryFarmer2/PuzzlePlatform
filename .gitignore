@@ -1,6 +1,6 @@
 # Created by https://www.gitignore.io/api/visualstudio,unrealengine
 
-
+*.bat
 
 ### UnrealEngine ###
 # Visual Studio 2015 user specific files
