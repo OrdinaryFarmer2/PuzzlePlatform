@@ -14,24 +14,32 @@ class PUZZLEPLATFORM_API AMovingPlatform : public AStaticMeshActor
 {
 	GENERATED_BODY()
 
-public:
-	AMovingPlatform();
-
 	/** 도착할 목적지입니다. */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Moving", meta=(AllowPrivateAccess="true", MakeEditWidget="true"))
 	FVector TargetLocation;
-
+	
 	/** 타겟위치까지 갔을 때, 현재 위치와 목적지와의 거리오차 허용치입니다. */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Moving", meta=(AllowPrivateAccess="true", MakeEditWidget="true"))
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Moving", meta=(AllowPrivateAccess="true"))
 	float LocationTolerance;
 
 	/** 이동 보간 속도입니다. */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Moving", meta=(AllowPrivateAccess="true"))
 	float MovingInterpSpeed;
-
+	
 	FVector PointA;
 
 	FVector PointB;
+
+	bool bRoundTripActivated;
+	
+public:
+	AMovingPlatform();	
+
+	FORCEINLINE void ActivateRoundTrip() { bRoundTripActivated = true; }
+
+	FORCEINLINE void DeactivateRoundTrip() { bRoundTripActivated = false;}
+
+	FORCEINLINE bool GetIsRoundTripActivated() const { return bRoundTripActivated; }
 	
 protected:
 	virtual void BeginPlay() override;

@@ -9,9 +9,11 @@ AMovingPlatform::AMovingPlatform()
 	: TargetLocation(100.f, 0.f, 0.f)
 	, LocationTolerance(1.f)
 	, MovingInterpSpeed(5.f)
+	, bRoundTripActivated(true)
 {
 	PrimaryActorTick.bCanEverTick = true;
 	SetMobility(EComponentMobility::Movable);
+	
 	bReplicates = true;
 	SetReplicatingMovement(true);
 }
@@ -28,7 +30,7 @@ void AMovingPlatform::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 
-	if (!HasAuthority())
+	if (!HasAuthority() || bRoundTripActivated == false)
 	{
 		return;
 	}
