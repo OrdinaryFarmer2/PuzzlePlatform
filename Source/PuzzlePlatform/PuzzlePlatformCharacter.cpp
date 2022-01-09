@@ -77,6 +77,11 @@ void APuzzlePlatformCharacter::SetupPlayerInputComponent(class UInputComponent* 
 }
 
 
+void APuzzlePlatformCharacter::ExecTest()
+{
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, FString("ExecTest"));
+}
+
 void APuzzlePlatformCharacter::OnResetVR()
 {
 	// If PuzzlePlatform is added to a project via 'Add Feature' in the Unreal Editor the dependency on HeadMountedDisplay in PuzzlePlatform.Build.cs is not automatically propagated
